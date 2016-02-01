@@ -156,7 +156,7 @@ public class PIDController {
 		m_deltaError = m_previousError - m_error;
 		m_sumOfError += m_error;
 		
-		return makeInRange(calculateP() + calculateI(processVariable, setpoint) + calculateD());
+		return makeInRange(calculateP() + calculateI() + calculateD());
 	}
 	
 	
@@ -182,11 +182,9 @@ public class PIDController {
 	 * 
 	 * if the sum of the error is acting against your proportional term, reset the sum to just be the current error
 	 * 
-	 * @param processVariable	this is the sensor value
-	 * @param setpoint			this is where you want to be
 	 * @return	integral term
 	 */
-	private double calculateI(double processVariable, double setpoint)
+	private double calculateI()
 	{
 		if(Math.abs(m_error) <= m_tolerance)
 		{
